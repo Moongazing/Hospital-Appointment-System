@@ -8,7 +8,9 @@ using TAO.HAS.Business.Abstract;
 using TAO.HAS.Business.Concrete;
 using TAO.HAS.DataAccess.Abstract;
 using TAO.HAS.DataAccess.Concrete.EntityFramework;
+
 using TAO_Core.Utilities.Interceptors;
+using TAO_Core.Utilities.Security.JWT;
 
 namespace TAO.HAS.Business.DependencyResolvers.Autofac
 {
@@ -22,7 +24,16 @@ namespace TAO.HAS.Business.DependencyResolvers.Autofac
       builder.RegisterType<DepartmentManager>().As<IDepartmentService>().SingleInstance();
       builder.RegisterType<EfDepartmentDal>().As<IDepartmentDal>().SingleInstance();
 
+      builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
+      builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
 
+      builder.RegisterType<AuthManager>().As<IAuthService>();
+      builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
+
+
+      /* builder.RegisterType<FileLogger>().As<LoggerServiceBase>().SingleInstance();
+       builder.RegisterType<DatabaseLogger>().As<LoggerServiceBase>().SingleInstance();*/
 
 
       var assembly = System.Reflection.Assembly.GetExecutingAssembly();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using TAO.HAS.Entities.Concrete;
+using TAO_Core.Entities.Concrete;
 
 namespace TAO.HAS.DataAccess.Concrete.EntityFramework
 {
@@ -18,6 +19,10 @@ namespace TAO.HAS.DataAccess.Concrete.EntityFramework
     public DbSet<Department> Departments { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<Proffesion> Proffesions { get; set; }
+
+    public DbSet<User> Users { get; set; }
+    public DbSet<OperationClaim> OperationClaims { get; set; }
+    public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TAO_Core.Entities.Concrete;
 
 namespace TAO.HAS.Business.Constans
 {
@@ -15,6 +16,16 @@ namespace TAO.HAS.Business.Constans
     public static string DoctorDetailsListed;
     public static string DoctorDeleted;
     public static string DoctorUpdated;
+    public static string StatusShouldBeActive;
+    internal static string UserRegistered;
+    internal static User UserNotFound;
+    internal static User PasswordError;
+    internal static string SuccessfulLogin;
+    internal static string UserAdded;
+    internal static string UserDeleted;
+    internal static string UserUpdated;
+    internal static string UserAlreadyExists;
+    internal static string AccessTokenCreated;
     #endregion
   }
 }

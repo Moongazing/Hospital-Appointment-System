@@ -5,12 +5,14 @@ using System.Threading;
 using TAO.HAS.Business.Abstract;
 using TAO.HAS.Business.BusinessAspects;
 using TAO.HAS.Business.Constans;
+using TAO.HAS.Business.ValidationRules.FluentValidation;
 using TAO.HAS.DataAccess.Abstract;
 using TAO.HAS.Entities.Concrete;
 using TAO.HAS.Entities.DTOs;
 using TAO_Core.Aspects.Autofac.Caching;
 using TAO_Core.Aspects.Autofac.Logging;
 using TAO_Core.Aspects.Autofac.Performance;
+using TAO_Core.Aspects.Autofac.Validation;
 using TAO_Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using TAO_Core.Utilities.Business;
 using TAO_Core.Utilities.Results;
@@ -30,15 +32,17 @@ namespace TAO.HAS.Business.Concrete
       _departmentService = departmentService;
       
     }
-    [SecuredOperation("admin,doctor.add")]
+    //[ValidationAspect(typeof(DoctorValidator))]
+   // [SecuredOperation("admin,doctor.add")]
     [PerformanceAspect(10)]
-    [LogAspect(typeof(FileLogger))]
+    [LogAspect(typeof(DatabaseLogger))]
     [CacheRemoveAspect("IDoctorService.Get")]
     public IResult Add(Doctor doctor)
     {
       var result = BusinessRules.Run(CheckIfDoctorAge(doctor.BirthDate),
                                      CheckIfDoctorMailIsExists(doctor.Email),
-                                     CheckIfDepartmentLimitExceded()
+                                     CheckIfDepartmentLimitExceded(),
+                                     CheckIfStatusPassive(doctor.Status)
                                      );
       if(result != null )
       {
@@ -85,6 +89,8 @@ namespace TAO.HAS.Business.Concrete
     {
       return new SuccessDataResult<List<Doctor>>(_doctorDal.GetAll(d => d.ProffesionId == proffesionId));
     }
+
+    [ValidationAspect(typeof(DoctorValidator))]
     [SecuredOperation("admin,doctor.update")]
     [CacheAspect]
     [PerformanceAspect(12)]
@@ -117,6 +123,17 @@ namespace TAO.HAS.Business.Concrete
       if(result.Data.Count > 120)
       {
         return new ErrorResult(Messages.DepartmentLimitExceded);
+      }
+      return new SuccessResult();
+    }
+    private IResult CheckIfStatusPassive(bool status)
+    {
+
+      var result = _doctorDal.GetAll(d => d.Status == false);
+      var result2 = _doctorDal.GetAll(d => d.Status == status);
+      if(result == result2)
+      {
+        return new ErrorResult(Messages.StatusShouldBeActive);
       }
       return new SuccessResult();
     }

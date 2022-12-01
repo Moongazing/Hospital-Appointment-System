@@ -13,7 +13,7 @@ namespace TAO.HAS.DataAccess.Concrete.EntityFramework
   {
     public List<DoctorDetailDto> GetDoctorDetails()
     {
-      using (HospitalAppointmentSystemContext context = new HospitalAppointmentSystemContext())
+      using (var context = new HospitalAppointmentSystemContext())
       {
         var result = from doctor in context.Doctors
                      join location in context.Locations on doctor.LocationId equals location.Id
