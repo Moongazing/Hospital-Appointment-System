@@ -57,10 +57,9 @@ namespace TAO.HAS.Business.Concrete
       _doctorDal.Delete(doctor);
       return new SuccessResult(Messages.DoctorDeleted);
     }
-
+    [LogAspect(typeof(FileLogger))]
     [CacheAspect]
     [PerformanceAspect(12)]
-    [LogAspect(typeof(FileLogger))]
     public IDataResult<List<Doctor>> GetAll()
     {
       return new DataResult<List<Doctor>>(_doctorDal.GetAll(), true, Messages.DoctorsListed);

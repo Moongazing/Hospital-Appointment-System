@@ -36,5 +36,7 @@ namespace TAO.HAS.Business.Concrete
     {
       throw new NotImplementedException();
     }
+    #region BusinessRules
+    #endregion
   }
 }

@@ -18,6 +18,11 @@ namespace TAO.HAS.Business.DependencyResolvers.Autofac
     {
       builder.RegisterType<DoctorManager>().As<IDoctorService>().SingleInstance();
       builder.RegisterType<EfDoctorDal>().As<IDoctorDal>().SingleInstance();
+      
+      builder.RegisterType<DepartmentManager>().As<IDepartmentService>().SingleInstance();
+      builder.RegisterType<EfDepartmentDal>().As<IDepartmentDal>().SingleInstance();
+
+
 
 
       var assembly = System.Reflection.Assembly.GetExecutingAssembly();

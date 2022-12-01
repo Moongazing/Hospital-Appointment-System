@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using TAO_Core.Aspects.Autofac.Exception;
+using TAO_Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 
 namespace TAO_Core.Utilities.Interceptors
 {
@@ -16,7 +18,7 @@ namespace TAO_Core.Utilities.Interceptors
       var methodAttributes = type.GetMethod(method.Name)
           .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
       classAttributes.AddRange(methodAttributes);
-     // classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
+      classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
 
       return classAttributes.OrderBy(x => x.Priority).ToArray();
     }
