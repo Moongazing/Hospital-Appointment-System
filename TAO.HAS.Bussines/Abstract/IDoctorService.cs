@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TAO.HAS.Entities.Concrete;
+using TAO.HAS.Entities.DTOs;
 using TAO_Core.Utilities.Results;
 using TAO_Core.Utilities.Results.Abstract;
 
@@ -13,7 +14,7 @@ namespace TAO.HAS.Business.Abstract
     IResult Delete(Doctor doctor);
     IResult Update(Doctor doctor);
 
-    // IDataResult<List<DoctorDetailDto>> GetDoctorDetails();
+    IDataResult<List<DoctorDetailDto>> GetDoctorDetails();
     IDataResult<List<Doctor>> GetAll();
 
   }
