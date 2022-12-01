@@ -4,5 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TAO.HAS.Bussines\TAO.HAS.Business.csproj" />
+  </ItemGroup>
+
 
 </Project>

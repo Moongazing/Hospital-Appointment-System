@@ -47,6 +47,7 @@ namespace TAO.HAS.Business.Concrete
       _doctorDal.Add(doctor);
       return new SuccessResult(Messages.DoctorAdded);
     }
+
     [SecuredOperation("admin,doctor.delete")]
     [CacheAspect]
     [PerformanceAspect(10)]
