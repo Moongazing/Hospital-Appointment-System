@@ -7,7 +7,7 @@ namespace TAO.HAS.Business.Constans
 {
   public static class Messages
   {
-    #region DoctorMessages
+    
     public static string DoctorAgeIsNotValid;
     public static string DoctorAdded;
     public static string EmailIsAlreadyExists;
@@ -17,15 +17,19 @@ namespace TAO.HAS.Business.Constans
     public static string DoctorDeleted;
     public static string DoctorUpdated;
     public static string StatusShouldBeActive;
-    internal static string UserRegistered;
-    internal static User UserNotFound;
-    internal static User PasswordError;
-    internal static string SuccessfulLogin;
-    internal static string UserAdded;
-    internal static string UserDeleted;
-    internal static string UserUpdated;
-    internal static string UserAlreadyExists;
-    internal static string AccessTokenCreated;
-    #endregion
+    public static string UserRegistered;
+    public static string UserNotFound;
+    public static string PasswordError;
+    public static string SuccessfulLogin;
+    public static string UserAdded;
+    public static string UserDeleted;
+    public static string UserUpdated;
+    public static string UserAlreadyExists;
+    public static string AccessTokenCreated;
+    public static string DepartmentAdded;
+    public static string DepartmentDeleted;
+    public static string DepartmentUpdated;
+    public static string DepartmentsListed;
+   
   }
 }

@@ -32,8 +32,8 @@ namespace TAO.HAS.Business.Concrete
       _departmentService = departmentService;
       
     }
-    //[ValidationAspect(typeof(DoctorValidator))]
-   // [SecuredOperation("admin,doctor.add")]
+    [ValidationAspect(typeof(DoctorValidator))]
+    [SecuredOperation("admin,doctor.add")]
     [PerformanceAspect(10)]
     [LogAspect(typeof(DatabaseLogger))]
     [CacheRemoveAspect("IDoctorService.Get")]
