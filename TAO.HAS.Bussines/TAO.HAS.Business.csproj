@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TAO.HAS.DataAccess\TAO.HAS.DataAccess.csproj" />
+    <ProjectReference Include="..\TAO.HAS.Entities\TAO.HAS.Entities.csproj" />
+    <ProjectReference Include="..\TAO_Core\TAO_Core.csproj" />
+  </ItemGroup>
+
 </Project>
