@@ -13,5 +13,7 @@ namespace TAO.HAS.Business.Abstract
     IResult Delete(Department department);
     IResult Update(Department department);
     IDataResult<List<Department>> GetAll();
+    IDataResult<List<Department>> GetById(int departmentId);
+
   }
 }

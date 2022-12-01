@@ -19,7 +19,7 @@ namespace TAO.HAS.WebAPI.Controllers
     public IActionResult GetAll()
     {
       var result = _doctorService.GetAll();
-      if(result.Success)
+      if (result.Success)
       {
         return Ok(result);
       }
@@ -30,7 +30,7 @@ namespace TAO.HAS.WebAPI.Controllers
     public IActionResult GetByDepartmentId(int departmentId)
     {
       var result = _doctorService.GetByDepartment(departmentId);
-      if(result.Success)
+      if (result.Success)
       {
         return Ok(result);
       }

@@ -13,7 +13,6 @@ namespace TAO.HAS.Business.Abstract
     IResult Add(Doctor doctor);
     IResult Delete(Doctor doctor);
     IResult Update(Doctor doctor);
-
     IDataResult<List<DoctorDetailDto>> GetDoctorDetails();
     IDataResult<List<Doctor>> GetAll();
     IDataResult<List<Doctor>> GetByDepartment(int departmentId);
