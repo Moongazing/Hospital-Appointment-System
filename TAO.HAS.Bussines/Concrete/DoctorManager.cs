@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using TAO.HAS.Business.Abstract;
+using TAO.HAS.Business.BusinessAspects;
 using TAO.HAS.Business.Constans;
 using TAO.HAS.DataAccess.Abstract;
 using TAO.HAS.Entities.Concrete;
 using TAO.HAS.Entities.DTOs;
+using TAO_Core.Aspects.Autofac.Caching;
+using TAO_Core.Aspects.Autofac.Logging;
+using TAO_Core.Aspects.Autofac.Performance;
+using TAO_Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using TAO_Core.Utilities.Business;
 using TAO_Core.Utilities.Results;
 using TAO_Core.Utilities.Results.Abstract;
@@ -25,6 +30,10 @@ namespace TAO.HAS.Business.Concrete
       _departmentService = departmentService;
       
     }
+    [SecuredOperation("admin,doctor.add")]
+    [PerformanceAspect(10)]
+    [LogAspect(typeof(FileLogger))]
+    [CacheRemoveAspect("IDoctorService.Get")]
     public IResult Add(Doctor doctor)
     {
       var result = BusinessRules.Run(CheckIfDoctorAge(doctor.BirthDate),
@@ -38,32 +47,48 @@ namespace TAO.HAS.Business.Concrete
       _doctorDal.Add(doctor);
       return new SuccessResult(Messages.DoctorAdded);
     }
-
+    [SecuredOperation("admin,doctor.delete")]
+    [CacheAspect]
+    [PerformanceAspect(10)]
+    [LogAspect(typeof(FileLogger))]
     public IResult Delete(Doctor doctor)
     {
       _doctorDal.Delete(doctor);
       return new SuccessResult(Messages.DoctorDeleted);
     }
 
+    [CacheAspect]
+    [PerformanceAspect(12)]
+    [LogAspect(typeof(FileLogger))]
     public IDataResult<List<Doctor>> GetAll()
     {
       return new DataResult<List<Doctor>>(_doctorDal.GetAll(), true, Messages.DoctorsListed);
     }
-
+    [CacheAspect]
+    [PerformanceAspect(12)]
+    [LogAspect(typeof(FileLogger))]
     public IDataResult<List<DoctorDetailDto>> GetDoctorDetails()
     {
      return new DataResult<List<DoctorDetailDto>>(_doctorDal.GetDoctorDetails(),true,Messages.DoctorDetailsListed);
     }
+    [CacheAspect]
+    [PerformanceAspect(12)]
+    [LogAspect(typeof(FileLogger))]
     public IDataResult<List<Doctor>> GetByDepartment(int departmentId)
     {
       return new SuccessDataResult<List<Doctor>>(_doctorDal.GetAll(d => d.DepartmentId == departmentId));
     }
-
+    [CacheAspect]
+    [PerformanceAspect(12)]
+    [LogAspect(typeof(FileLogger))]
     public IDataResult<List<Doctor>> GetByProffesion(int proffesionId)
     {
       return new SuccessDataResult<List<Doctor>>(_doctorDal.GetAll(d => d.ProffesionId == proffesionId));
     }
-
+    [SecuredOperation("admin,doctor.update")]
+    [CacheAspect]
+    [PerformanceAspect(12)]
+    [LogAspect(typeof(DatabaseLogger))]
     public IResult Update(Doctor doctor)
     {
       _doctorDal.Update(doctor);
@@ -95,8 +120,6 @@ namespace TAO.HAS.Business.Concrete
       }
       return new SuccessResult();
     }
-
-  
     #endregion
 
 
