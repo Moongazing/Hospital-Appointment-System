@@ -16,6 +16,10 @@ namespace TAO.HAS.Business.Abstract
 
     IDataResult<List<DoctorDetailDto>> GetDoctorDetails();
     IDataResult<List<Doctor>> GetAll();
+    IDataResult<List<Doctor>> GetByDepartment(int departmentId);
+    IDataResult<List<Doctor>> GetByProffesion(int proffesionId);
+
+
 
   }
 }

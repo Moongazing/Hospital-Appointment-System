@@ -7,7 +7,7 @@ using TAO_Core.Utilities.Results;
 
 namespace TAO.HAS.Business.Abstract
 {
-  internal interface IDepartmentService
+  public interface IDepartmentService
   {
     IResult Add(Department department);
     IResult Delete(Department department);
