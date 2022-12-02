@@ -11,6 +11,7 @@ namespace TAO.HAS.Entities.Concrete
     public int DepartmentId { get; set; }
     public int ProffesionId { get; set; }
     public int LocationId { get; set; }
+    public int HospitalId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }

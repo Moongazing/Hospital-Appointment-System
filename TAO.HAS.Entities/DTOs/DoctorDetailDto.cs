@@ -12,6 +12,7 @@ namespace TAO.HAS.Entities.DTOs
     public int DepartmentId { get; set; }
     public int ProffesionId { get; set; }
     public int LocationId { get; set; }
+    public int HospitalId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
@@ -19,6 +20,7 @@ namespace TAO.HAS.Entities.DTOs
     public string Department { get; set; }
     public string Proffesion { get; set; }
     public string Location { get; set; }
+    public string  Hospital { get; set; }
     public int Sex { get; set; }
     public bool Status { get; set; }
   }

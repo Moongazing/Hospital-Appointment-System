@@ -19,6 +19,7 @@ namespace TAO.HAS.DataAccess.Concrete.EntityFramework
                      join location in context.Locations on doctor.LocationId equals location.Id
                      join department in context.Departments on doctor.DepartmentId equals department.Id
                      join proffesion in context.Proffesions on doctor.ProffesionId equals proffesion.Id
+                     join hospital in context.Hospitals on doctor.HospitalId equals hospital.Id
                      select new DoctorDetailDto
                      
                      {
@@ -28,6 +29,7 @@ namespace TAO.HAS.DataAccess.Concrete.EntityFramework
                        Department = department.Description,
                        Proffesion = proffesion.Description,
                        Location = location.Description,
+                       Hospital = hospital.HospitalName,
                        Email = doctor.Email,
                        BirthDate = doctor.BirthDate,
                        Sex = doctor.Sex,
