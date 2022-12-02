@@ -13,5 +13,7 @@ namespace TAO.HAS.Business.Abstract
     IResult Delete(Location location);
     IResult Update(Location location);
     IDataResult<List<Location>> GetAll();
+    IDataResult<List<Location>> GetByCountry(string country);  
+    IDataResult<List<Location>> GetByCity(string city);
   }
 }

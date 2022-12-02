@@ -30,6 +30,9 @@ namespace TAO.HAS.Business.Constans
     public static string DepartmentDeleted;
     public static string DepartmentUpdated;
     public static string DepartmentsListed;
-   
+    internal static string LocationAdded;
+    internal static string LocationDeleted;
+    internal static string LocationsListed;
+    internal static string LocationUpdated;
   }
 }
