@@ -4,6 +4,7 @@ using System.Text;
 using TAO.HAS.Entities.Concrete;
 using TAO_Core.Utilities.Results.Abstract;
 using TAO_Core.Utilities.Results;
+using TAO.HAS.Entities.DTOs;
 
 namespace TAO.HAS.Business.Abstract
 {
@@ -14,5 +15,7 @@ namespace TAO.HAS.Business.Abstract
     IResult Update(Hospital hospital);
     IDataResult<List<Hospital>> GetAll();
     IDataResult<List<Hospital>> GetByLocationId(int locationId);
+    IDataResult<List<HospitalDetailDto>> GetHospitalDetails();
+
   }
 }
