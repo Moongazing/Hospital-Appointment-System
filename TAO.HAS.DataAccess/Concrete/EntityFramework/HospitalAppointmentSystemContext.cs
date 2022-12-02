@@ -20,7 +20,7 @@ namespace TAO.HAS.DataAccess.Concrete.EntityFramework
     public DbSet<Location> Locations { get; set; }
     public DbSet<Proffesion> Proffesions { get; set; }
     public DbSet<Hospital> Hospitals { get; set; }
-
+    public DbSet<Patient> Patients { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<OperationClaim> OperationClaims { get; set; }
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }

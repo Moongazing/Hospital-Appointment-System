@@ -43,5 +43,8 @@ namespace TAO.HAS.Business.Constans
     internal static string HospitalsListed;
     internal static string HospitalDetailsListed;
     internal static string HospitalUpdated;
+    internal static string PatientAdded;
+    internal static string PatientDeleted;
+    internal static string PatientListed;
   }
 }
