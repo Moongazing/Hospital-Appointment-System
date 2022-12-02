@@ -34,5 +34,9 @@ namespace TAO.HAS.Business.Constans
     internal static string LocationDeleted;
     internal static string LocationsListed;
     internal static string LocationUpdated;
+    internal static string ProffesionAdded;
+    internal static string ProffesionDeleted;
+    internal static string ProffesionUpdated;
+    internal static string ProfessionsListed;
   }
 }
