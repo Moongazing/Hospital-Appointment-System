@@ -6,7 +6,6 @@ using TAO.HAS.Entities.Concrete;
 using TAO.HAS.Entities.DTOs;
 using TAO_Core.DataAccess.EntityFramework;
 using System.Linq;
-
 namespace TAO.HAS.DataAccess.Concrete.EntityFramework
 {
   public class EfDoctorDal : EfEntityRepositoryBase<Doctor, HospitalAppointmentSystemContext>, IDoctorDal
@@ -21,7 +20,6 @@ namespace TAO.HAS.DataAccess.Concrete.EntityFramework
                      join proffesion in context.Proffesions on doctor.ProffesionId equals proffesion.Id
                      join hospital in context.Hospitals on doctor.HospitalId equals hospital.Id
                      select new DoctorDetailDto
-                     
                      {
                        Id  = doctor.Id,
                        FirstName = doctor.FirstName,
