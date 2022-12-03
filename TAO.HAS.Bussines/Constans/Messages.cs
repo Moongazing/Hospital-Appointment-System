@@ -46,5 +46,10 @@ namespace TAO.HAS.Business.Constans
     internal static string PatientAdded;
     internal static string PatientDeleted;
     internal static string PatientListed;
+    internal static string PatientAlreadyExists;
+    internal static string PatientShouldBeToAppearChildDoctor;
+    internal static string CheckTheTCKN;
+
+    public static string PatientUpdated;
   }
 }

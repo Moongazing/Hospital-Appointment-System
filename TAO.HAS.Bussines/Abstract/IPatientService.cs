@@ -15,6 +15,6 @@ namespace TAO.HAS.Business.Abstract
     IResult Update(Patient patient);
     IDataResult<List<Patient>> GetAll();
     IDataResult<List<Patient>> GetByBloodType(string bloodType);
-    IDataResult<List<Patient>> GetByAge(int minAge,int maxAge);
+    IDataResult<List<Patient>> GetByBirthYear(DateTime minYear,DateTime maxYear);
   }
 }
