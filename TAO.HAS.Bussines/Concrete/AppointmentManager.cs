@@ -22,7 +22,7 @@ namespace TAO.HAS.Business.Concrete
 
     public IResult Add(Appointment appointment)
     {
-      var result = BusinessRules.Run();
+      var result = BusinessRules.Run(CheckIfAppointmentAvailable(appointment.DoctorId,appointment.AppointmentDate,appointment.AppointmentHour));
       if(result != null)
       {
         return result;
@@ -63,6 +63,15 @@ namespace TAO.HAS.Business.Concrete
       return new SuccessResult(Messages.AppointmentUpdated);
     }
     #region Business Rules 
+    private IResult CheckIfAppointmentAvailable(int doctorId, DateTime appointmentDate, DateTime appointmentHour)
+    {
+      var result = _appointmentDal.GetAll(a=>a.DoctorId == doctorId && a.AppointmentDate == appointmentDate && a.AppointmentHour == appointmentHour).Count;
+      if(result > 0)
+      {
+        return new ErrorResult(Messages.AppointmentIsNotAvailable);
+      }
+      return new SuccessResult();
+    }
     #endregion
   }
 }

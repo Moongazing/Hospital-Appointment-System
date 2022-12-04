@@ -58,5 +58,6 @@ namespace TAO.HAS.Business.Constans
     internal static string AppointmentListedByDoctor;
     internal static string AppointmentListedByPatient;
     internal static string AppointmentUpdated;
+    internal static string AppointmentIsNotAvailable;
   }
 }
