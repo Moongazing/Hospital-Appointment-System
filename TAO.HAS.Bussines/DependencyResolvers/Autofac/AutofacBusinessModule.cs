@@ -30,6 +30,25 @@ namespace TAO.HAS.Business.DependencyResolvers.Autofac
       builder.RegisterType<AuthManager>().As<IAuthService>();
       builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
+      builder.RegisterType<AppointmentManager>().As<IAppointmentService>();
+      builder.RegisterType<EfAppointmentDal>().As<IAppointmentDal>();
+
+      builder.RegisterType<ProffesionManager>().As<IProffesionService>();
+      builder.RegisterType<EfProffesionDal>().As<IProffesionDal>();
+
+      builder.RegisterType<HospitalManager>().As<IHospitalService>();
+      builder.RegisterType<EfHospitalDal>().As<IHospitalDal>();
+
+      builder.RegisterType<LocationManager>().As<ILocationService>();
+      builder.RegisterType<EfLocationDal>().As<ILocationDal>();
+
+      builder.RegisterType<DoctorManager>().As<IDoctorService>();
+      builder.RegisterType<EfDoctorDal>().As<IDoctorDal>();
+
+      builder.RegisterType<PatientManager>().As<IPatientService>();
+      builder.RegisterType<EfPatientDal>().As<IPatientDal>();
+
+
 
 
       /* builder.RegisterType<FileLogger>().As<LoggerServiceBase>().SingleInstance();
