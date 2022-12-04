@@ -15,15 +15,20 @@ namespace TAO.HAS.Business.Concrete
   public class AppointmentManager : IAppointmentService
   {
     IAppointmentDal _appointmentDal;
-    public AppointmentManager(IAppointmentDal appointmentDal)
+    IHospitalService _hospitalService;
+    public AppointmentManager(IAppointmentDal appointmentDal, IHospitalService hospitalService)
     {
       _appointmentDal = appointmentDal;
+      _hospitalService = hospitalService;
     }
 
     public IResult Add(Appointment appointment)
     {
-      var result = BusinessRules.Run(CheckIfAppointmentAvailable(appointment.DoctorId,appointment.AppointmentDate,appointment.AppointmentHour),
-                                     CheckIfDoctorAppointmentLimit(appointment.DoctorId,appointment.AppointmentDate));
+      var result = BusinessRules.Run(CheckIfTimeIsMaintanceTime(),
+                                     CheckIfAppointmentHourAvailable(appointment.AppointmentHour),
+                                     CheckIfAppointmentAvailable(appointment.DoctorId, appointment.AppointmentDate, appointment.AppointmentHour),
+                                     CheckIfDoctorAppointmentLimitExceded(appointment.DoctorId, appointment.AppointmentDate),
+                                     CheckIfPatientAppointmentLimitExceded(appointment.PatientId, appointment.AppointmentDate));
       if(result != null)
       {
         return result;
@@ -73,12 +78,49 @@ namespace TAO.HAS.Business.Concrete
       }
       return new SuccessResult();
     }
-    private IResult CheckIfDoctorAppointmentLimit(int doctorId,DateTime appointmentDate)
+    private IResult CheckIfDoctorAppointmentLimitExceded(int doctorId,DateTime appointmentDate)
     {
       var result = _appointmentDal.GetAll(a => a.DoctorId == doctorId && a.AppointmentDate == appointmentDate).Count;
       if(result > 75)
       {
         return new ErrorResult(Messages.DoctorDailyLimitExceded);
+      }
+      return new SuccessResult();
+    }
+    private IResult CheckIfPatientAppointmentLimitExceded(int patientId,DateTime appointmentDate)
+    {
+      var result = _appointmentDal.GetAll(a => a.PatientId == patientId && a.AppointmentDate == appointmentDate).Count;
+      if(result > 20)
+      {
+        return new ErrorResult(Messages.PatientDailyLimitExceded);
+      }
+      return new SuccessResult();
+    }
+    /*
+    private IResult CheckIfHospitalLimitExceded(int hospitalId)
+    {
+      var result = _appointmentDal.GetAll(a=>a.HospitalId == hospitalId).Count;
+      var capacity = _hospitalService.GetAll();
+      if( result > capacity.Data.Count)
+      {
+        return new ErrorResult(Messages.HospitalCapacityExceded);
+      }
+      return new SuccessResult();
+    }*/
+    private IResult CheckIfAppointmentHourAvailable(DateTime appointmentHour)
+    {
+      var result = _appointmentDal.GetAll(a=>a.AppointmentHour == appointmentHour);
+      if(Convert.ToInt32(appointmentHour) >= 17)
+      {
+        return new ErrorResult(Messages.OutOfHours);
+      }
+      return new SuccessResult();
+    }
+    private IResult CheckIfTimeIsMaintanceTime()
+    {
+      if(Convert.ToInt32(DateTime.Now.Hour) == 22)
+      {
+        return new ErrorResult(Messages.SystemOnMaintance);
       }
       return new SuccessResult();
     }

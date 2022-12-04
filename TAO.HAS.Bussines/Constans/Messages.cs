@@ -60,5 +60,10 @@ namespace TAO.HAS.Business.Constans
     internal static string AppointmentUpdated;
     internal static string AppointmentIsNotAvailable;
     internal static string DoctorDailyLimitExceded;
+    internal static string PatientDailyLimitExceded;
+    internal static string HospitalCapacityExceded;
+    internal static string SystemOnMaintance;
+
+    public static string OutOfHours { get; internal set; }
   }
 }
