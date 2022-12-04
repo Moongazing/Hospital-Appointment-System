@@ -51,5 +51,12 @@ namespace TAO.HAS.Business.Constans
     internal static string CheckTheTCKN;
 
     public static string PatientUpdated;
+    internal static string AppointmentCreated;
+    internal static string AppointmentCanceled;
+    internal static string AppointmentListed;
+    internal static string AppointmentListedByDate;
+    internal static string AppointmentListedByDoctor;
+    internal static string AppointmentListedByPatient;
+    internal static string AppointmentUpdated;
   }
 }
