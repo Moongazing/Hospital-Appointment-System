@@ -5,6 +5,7 @@ using TAO.HAS.Business.Abstract;
 using TAO.HAS.Business.Constans;
 using TAO.HAS.DataAccess.Abstract;
 using TAO.HAS.Entities.Concrete;
+using TAO.HAS.Entities.DTOs;
 using TAO_Core.Utilities.Business;
 using TAO_Core.Utilities.Results;
 using TAO_Core.Utilities.Results.Abstract;
@@ -68,6 +69,29 @@ namespace TAO.HAS.Business.Concrete
       _appointmentDal.Update(appointment);
       return new SuccessResult(Messages.AppointmentUpdated);
     }
+
+    public IDataResult<List<AppointmentDetailDto>> GetAppointmentDetails()
+    {
+      return new SuccessDataResult<List<AppointmentDetailDto>>(_appointmentDal.GetAppointmentDetails(), Messages.AppointmentDetailsListed);
+    }
+
+    public IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByDoctor(int doctorId)
+    {
+      return new SuccessDataResult<List<AppointmentDetailDto>>(_appointmentDal.GetAppointmentDetailByDoctor(doctorId));
+
+    }
+
+    public IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByPatient(int patientId)
+    {
+      return new SuccessDataResult<List<AppointmentDetailDto>>(_appointmentDal.GetAppointmentDetailByPatient(patientId));
+
+    }
+
+    public IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByDate(DateTime date)
+    {
+      return new SuccessDataResult<List<AppointmentDetailDto>>(_appointmentDal.GetAppointmentDetailByDate(date));
+
+    }
     #region Business Rules 
     private IResult CheckIfAppointmentAvailable(int doctorId, DateTime appointmentDate, DateTime appointmentHour)
     {
@@ -124,6 +148,8 @@ namespace TAO.HAS.Business.Concrete
       }
       return new SuccessResult();
     }
+
+  
     #endregion
   }
 }

@@ -18,10 +18,10 @@ namespace TAO.HAS.Business.Abstract
     IDataResult<List<Appointment>> GetByDoctorId(int doctorId);
     IDataResult<List<Appointment>> GetByDate(DateTime date);
 
-    //IDataResult<List<AppointmentDetailDto>> GetAppointmentDetails();
-    //IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByDoctor(int doctorId);
-    //IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByPatient(int patientId);
-    //IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByDate(DateTime date);
+    IDataResult<List<AppointmentDetailDto>> GetAppointmentDetails();
+    IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByDoctor(int doctorId);
+    IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByPatient(int patientId);
+    IDataResult<List<AppointmentDetailDto>> GetAppointmentDetailsByDate(DateTime date);
 
 
 
