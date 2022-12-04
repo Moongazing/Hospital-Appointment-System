@@ -22,7 +22,8 @@ namespace TAO.HAS.Business.Concrete
 
     public IResult Add(Appointment appointment)
     {
-      var result = BusinessRules.Run(CheckIfAppointmentAvailable(appointment.DoctorId,appointment.AppointmentDate,appointment.AppointmentHour));
+      var result = BusinessRules.Run(CheckIfAppointmentAvailable(appointment.DoctorId,appointment.AppointmentDate,appointment.AppointmentHour),
+                                     CheckIfDoctorAppointmentLimit(appointment.DoctorId,appointment.AppointmentDate));
       if(result != null)
       {
         return result;
@@ -69,6 +70,15 @@ namespace TAO.HAS.Business.Concrete
       if(result > 0)
       {
         return new ErrorResult(Messages.AppointmentIsNotAvailable);
+      }
+      return new SuccessResult();
+    }
+    private IResult CheckIfDoctorAppointmentLimit(int doctorId,DateTime appointmentDate)
+    {
+      var result = _appointmentDal.GetAll(a => a.DoctorId == doctorId && a.AppointmentDate == appointmentDate).Count;
+      if(result > 75)
+      {
+        return new ErrorResult(Messages.DoctorDailyLimitExceded);
       }
       return new SuccessResult();
     }
