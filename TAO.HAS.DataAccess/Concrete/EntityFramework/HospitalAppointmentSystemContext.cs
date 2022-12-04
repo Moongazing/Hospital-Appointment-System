@@ -9,7 +9,7 @@ using TAO_Core.Entities.Concrete;
 
 namespace TAO.HAS.DataAccess.Concrete.EntityFramework
 {
-  public class HospitalAppointmentSystemContext:DbContext
+  public class HospitalAppointmentSystemContext : DbContext
   {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -21,6 +21,7 @@ namespace TAO.HAS.DataAccess.Concrete.EntityFramework
     public DbSet<Proffesion> Proffesions { get; set; }
     public DbSet<Hospital> Hospitals { get; set; }
     public DbSet<Patient> Patients { get; set; }
+    public DbSet<Appointment> Appointments { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<OperationClaim> OperationClaims { get; set; }
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
